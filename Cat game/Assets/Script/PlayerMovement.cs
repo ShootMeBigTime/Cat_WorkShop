@@ -14,9 +14,11 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 _inputValue;
     private Rigidbody _rigidbody;
     private bool _isSprinting;
+    public bool Locked;
 
     private void Start()
     {
+        Locked = false;
         _rigidbody = GetComponent<Rigidbody>();
     }
 
@@ -44,14 +46,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rigidbody.MovePosition(
-            transform.position + transform.forward * (_inputValue.y * (_isSprinting?sprintingSpeed:movementSpeed) * Time.deltaTime)
+        if (!Locked)
+        {
+            _rigidbody.MovePosition(
+            transform.position + transform.forward * (_inputValue.y * (_isSprinting ? sprintingSpeed : movementSpeed) * Time.deltaTime)
         );
+
+            _rigidbody.MoveRotation(
+                transform.rotation *
+                Quaternion.AngleAxis(rotationSpeed * Time.deltaTime * _inputValue.x, transform.up)
+            );
+        }
         
-        _rigidbody.MoveRotation(
-            transform.rotation * 
-            Quaternion.AngleAxis(rotationSpeed * Time.deltaTime * _inputValue.x, transform.up)
-        );
         
     }
 }
