@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 6549682925665059826}
   m_Layer: 0
   m_Name: CatPlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -312,6 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f6137a71dea5334a8e205c485568304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioClips: []
 --- !u!114 &6549682925665059826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,3 +329,4 @@ MonoBehaviour:
   sprintingSpeed: 8
   rotationSpeed: 270
   jumpForce: 5
+  Locked: 0
