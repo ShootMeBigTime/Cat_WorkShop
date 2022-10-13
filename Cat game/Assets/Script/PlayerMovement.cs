@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float sprintingSpeed = 8.0f;
     [SerializeField] private float rotationSpeed = 270.0f;
     [SerializeField] private float jumpForce = 5.0f;
+    [SerializeField] private float rayCastLength = 0.7f;
+    [SerializeField] private float rayCastY = 0.1f;
     
     private Vector2 _inputValue;
     private Rigidbody _rigidbody;
@@ -36,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool IsGrounded()
     {
-        return Physics.Raycast(transform.position, -transform.up,0.3f);
+        return Physics.Raycast(transform.position + new Vector3(0f, rayCastY, 0f), -transform.up, rayCastLength);
     }
 
     private void OnSprint()
