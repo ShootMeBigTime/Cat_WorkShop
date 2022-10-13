@@ -17,9 +17,10 @@ public class doorBehaviour : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+
+        Debug.Log("yee");
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("yee");
 
             animator.SetBool("isCollisionTriggered", true);
 
