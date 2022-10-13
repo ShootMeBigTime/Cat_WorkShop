@@ -56,6 +56,7 @@ public class TeacherController : MonoBehaviour
     {
         Debug.Log("I have been activated");
         //Lock player in place
+        player.GetComponent<PlayerMovement>().Locked = true;
         //Make the cat fly to simulate pickup
         player.GetComponent<Rigidbody>().useGravity = false;
         player.GetComponent<Rigidbody>().AddForce(getPlayerTransform().up * 10);
