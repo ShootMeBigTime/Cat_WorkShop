@@ -62,7 +62,7 @@ public class TeacherController : MonoBehaviour
         player.GetComponent<PlayerMovement>().Locked = true;
         //Make the cat fly to simulate pickup
         player.GetComponent<Rigidbody>().useGravity = false;
-        player.GetComponent<Rigidbody>().AddForce(getPlayerTransform().up * 10);
+        player.GetComponent<Rigidbody>().AddForce(getPlayerTransform().up * 30);
         yield return new WaitForSeconds(3);
         //restart the level
         Application.LoadLevel(Application.loadedLevel);
