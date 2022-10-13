@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,6 +7,7 @@ public class TeacherController : MonoBehaviour
     private NavMeshAgent agent;
     private GameObject player;
     public bool seesCat;
+    private Animator teacherAnimator;
 
     public void Awake()
     {
@@ -15,6 +15,7 @@ public class TeacherController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
         agent.isStopped = true;
+        teacherAnimator = GetComponent<Animator>();
     }
 
     public void setSeeCat(bool value)
@@ -38,6 +39,7 @@ public class TeacherController : MonoBehaviour
     public void onEnterFollow()
     {
         agent.isStopped = false;
+        teacherAnimator.SetBool("seesCat", true);
     }
     public void onUpdateFollow()
     {
@@ -46,6 +48,7 @@ public class TeacherController : MonoBehaviour
     public void onExitFollow()
     {
         agent.isStopped = true;
+        teacherAnimator.SetBool("seesCat", false);
     }
     //---------------------------------------Pickup-------------------------------
     public void onEnterPickUp()
