@@ -9,16 +9,12 @@ public class GameManager : MonoBehaviour
 {
     public TextMeshProUGUI pickupText;
     public TextMeshProUGUI findKeycardText;
-    // Start is called before the first frame update
     void Start()
     {
         findKeycardText.gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
+    // UI element displaying wheter or not player has the keycard
     public void PickupStatus(bool pickupCounter)
     {
         if (pickupCounter == false)
@@ -31,11 +27,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // UI element appears that tells the player to get the keycard
     public void FindKeycard()
     {
         StartCoroutine(FindKeycardCouroutine());
     }
-
     IEnumerator FindKeycardCouroutine()
     {
         findKeycardText.gameObject.SetActive(true);

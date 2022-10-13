@@ -12,16 +12,14 @@ public class clawScratch : MonoBehaviour
     public GameObject door;
     private GameManager gameManager;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
-    // Update is called once per frame
     void Update()
     {
+        // Add wheter or not you have the keycard to the Game Manager UI
         gameManager.PickupStatus(pickupCounter);
         if (Input.GetMouseButton(0))
         {
@@ -29,26 +27,32 @@ public class clawScratch : MonoBehaviour
             RaycastHit clawHit;
             if (Physics.Raycast(clawRay, out clawHit))
             {
+                // If you claw at a rigidbody, add force to it
                 if (clawHit.rigidbody)
                 {
                     clawHit.rigidbody.AddForceAtPosition(force * transform.forward, clawHit.point);
                 }
+                // If you claw the keycard, pick it up
                 if (clawHit.collider.CompareTag("Pickup"))
                 {
                     clawHit.collider.gameObject.SetActive(false);
                     pickupCounter = true;
                 }
+                // If you claw the reader and you have the keycard, "open the door" aka set it inactive
                 if (clawHit.collider.CompareTag("Reader") && pickupCounter)
                 {
                     door = GameObject.FindGameObjectWithTag("Door");
                     door.SetActive(false);
-                } else if (clawHit.collider.CompareTag("Reader") && pickupCounter == false)
+                }
+                // If you claw the reader and you dont have the keycard, display UI element telling player to find the keycard
+                else if (clawHit.collider.CompareTag("Reader") && pickupCounter == false)
                 {
                     gameManager.FindKeycard();
                 }
             }
         }
     }
+    // Draw raycast for the scratch
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
